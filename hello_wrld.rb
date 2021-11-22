@@ -853,3 +853,46 @@ p convert(100, to_yens) #call the method, specifying the Block we want to invoke
 
 #alternative way to cal a Block
 p [100, 150, 1492].map(&to_dollars) #& to indicate that is a Block
+
+#184..190 Time Object
+today = Time.new
+p today.class
+
+
+p Time.new(2015, 11, 18, 23, 24, 12)
+# formato: hhhh, MM, dd, hh, mm, ss
+
+p today.to_a
+p today.to_s
+
+p today.hour
+
+puts today.yday #giorno dell'anno
+puts today.wday #giorno dell'anno
+
+bday = Time.new(1994, 9, 4)
+p bday.sunday?
+p bday + 60 # +60 minuti
+
+def trova_info_giornoAnno(numero)
+    startingDate = Time.new(2000, 1, 1)
+    while startingDate.yday != numero
+        startingDate+=60*60*24
+    end
+    # potevo fare until startingDate.yday = number
+    # che gira finche è false
+    p "trovato.. il #{numero} è #{startingDate}"
+end
+trova_info_giornoAnno(121)
+
+xmas = Time.new(2016, 12, 25)
+last = Time.new(2016, 12, 31)
+p xmas < bday # < viene prima
+p xmas.between?(bday, last)
+
+p today.ctime
+
+strTime = today.strftime("%j.. pippi)))))%j")
+p strTime #stringa pesonalizzata
+
+#todo 191
