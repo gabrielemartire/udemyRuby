@@ -896,3 +896,30 @@ strTime = today.strftime("%j.. pippi)))))%j")
 p strTime #stringa pesonalizzata
 
 #todo 191
+
+# 192 input output file 
+File.open("novel.txt").each do |line|
+    puts line
+end
+
+File.open("myFirstFile.txt", "a") do |file| 
+    # w per scrivere
+    # r per leggere
+    # a per append
+    file.puts "creato con puts ruby"
+    file.write "creato con .write ruby"
+    file.print "ricreato con puts ruby"
+end #rewritten file content
+
+File.delete("pippo.txt") if File.exist?("myFirstFile.txt")
+File.rename("myFirstFile.txt", "pippo.txt")
+
+# 195 ARGV
+ARGV.each do |arg|
+    num = arg.to_i
+    p "the quare of #{num} is #{num**2}"
+end
+
+#196 load page
+puts "successo"
+load "./end.rb" #output "output from end.rb file"
