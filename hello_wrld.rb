@@ -923,3 +923,46 @@ end
 #196 load page
 puts "successo"
 load "./end.rb" #output "output from end.rb file"
+
+#197 The require and require_relative Methods
+#bring function inside the code (how?).. l'estensione .rb è sottointesa
+require "./end" # need the ./ 
+require_relative "A/B/epic" # no need the ./ 
+
+# REgular Expression
+# 198 .start_with? and .end_with?
+phrase = "ruby is the best of the best la exists in the world"
+puts phrase.start_with?("rUby") #false
+
+def start_with_custom(stringa, phrase) 
+    stringa[0, phrase.length] == phrase 
+        #ritagli stringa
+            #[pos. inzio, lunghezza dell'estrapolazione]
+end
+
+start_with_custom("ciao", phrase)
+start_with_custom("ruby", phrase)
+start_with_custom("ewt", phrase)
+start_with_custom("ruby is the best of t", phrase)
+start_with_custom("ruby is thebest of t", phrase)
+start_with_custom("ruBy", phrase)
+p phrase[-5, 5]
+
+# 199 the .include
+puts phrase.include?"ruby"
+
+#200 INTO REGULAR EXPRESSIONE
+#"ruby is the best of the best la exists in the world"
+puts //.class #Regexp
+puts phrase =~ /r/ #show the index
+puts phrase =~ /est/ # come scrivere puts /est/ =~ phrase
+
+#201-202 .scan - return all results
+voicemail = 'you can reach me at 333-5647-38 or email cablabla@gmail.com'
+p voicemail.scan(/ca/) #output an Array with the string, searching all 'ca'
+p voicemail.scan(/[ca]/) #output an Array searching letter by letter, all the c and all the a
+
+p voicemail.scan(/\d/) #\d return single digit (cifra)
+p voicemail.scan(/\d+/) #\d return number '333' '5647' '38'
+
+voicemail.scan(/\d+/) { |digit| puts digit.length } #return digit 
