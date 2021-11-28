@@ -931,7 +931,8 @@ require_relative "A/B/epic" # no need the ./
 
 # REgular Expression
 # 198 .start_with? and .end_with?
-phrase = "ruby is the best of the best la exists in the world"
+phrase = "ruby is the be-st RoR of the be&st la exists in the RoR world"
+
 puts phrase.start_with?("rUby") #false
 
 def start_with_custom(stringa, phrase) 
@@ -966,3 +967,93 @@ p voicemail.scan(/\d/) #\d return single digit (cifra)
 p voicemail.scan(/\d+/) #\d return number '333' '5647' '38'
 
 voicemail.scan(/\d+/) { |digit| puts digit.length } #return digit 
+
+#203 the wildcard
+puts phrase =~ /./  #all
+puts phrase =~ /.oR/
+puts phrase =~ /R.R/
+
+puts phrase.scan(/R.R/)
+puts phrase.scan(/.oR/)
+
+#204 - backslash
+puts phrase.scan(/\./) #no all, literally the dot
+puts phrase.scan(/\D/) #no numbers, all letters
+puts phrase.scan(/\s/).length #space
+
+#206
+puts phrase.scan(/[^aeiou]/)
+
+phrase = "ruby is the be-st RoR of the be&st la exists in the RoR world"
+
+#207 sbu & gsub - sostituzioni
+puts "pippo".sub("p","f")
+puts "pippo".gsub("p", "f") #global sostitution
+
+#208 # rubular.com/
+
+#209 Classes - custom data container
+# include variables (attributes)
+# methods to interact with the object
+# encapsulation..
+# instantiation create an object from a class
+# kind of a template
+# difference object, same class
+
+# 211 superclass / subclass / ancestor
+p 5.class.ancestors #output [Integer, Numeric, Comparable, Object, Kernel, BasicObject]
+
+# 212 .methods
+puts 5.methods.sort
+
+#213
+class Gadget
+end
+
+phone = Gadget.new
+p phone.class
+
+# 214
+pippo = 123
+pluto = pippo
+p pippo.object_id
+p pluto.object_id
+pippo = 32
+p pippo.object_id
+p pluto.object_id
+
+# 215..220 instance variable, instance methods, self keyword, getter methods, setter methods, add parameters to init methods
+class Cane
+
+    attr_accessor :age # 221 - shortcut acessor methods (read methods+write methods)
+    #only read.. attr_reader:
+    #only write.. attr_writer:
+
+    def initialize(color)
+        @name = "Cane-#{("A".."Z").to_a.sample}" #sambple = sandom array element
+        @age = "#{rand(1..100)}"
+        @color = color
+    end
+    def info
+        "my #{@color} dog's name is #{@name}, #{self.class}, #{self.object_id}"
+    end
+
+    #read methods
+    def color 
+        @color 
+    end
+
+    #write methods
+    def color=(new_color)
+        @color = new_color
+    end
+end
+lilly = Cane.new("lilly")
+puts lilly.inspect
+puts lilly.info 
+p lilly.color
+p lilly.color = "cod: 12green"
+p lilly.color
+billy = Cane.new("cod: 2black")
+p billy.color
+p billy.age #accessibile cause set as attr_accessor 
